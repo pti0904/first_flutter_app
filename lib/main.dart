@@ -11,27 +11,43 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class _MyApp extends State<MyApp>{
+class _MyApp extends State<MyApp> {
   var switchValue = false;
+  String test = 'hello';
+  Color _color = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        darkTheme: ThemeData.light(),
-        home: Scaffold(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData.light(),
+      home: Scaffold(
           body: Center(
-            child: Switch(
-                value: switchValue,
-                onChanged: (value) {
+              child: ElevatedButton(
+                child: Text('$test'),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(_color)),
+              onPressed: () {
+                if (_color == Colors.blue) {
                   setState(() {
-                  print(value);
-                  switchValue = value;
-                }),
-          }),
-        ));
+                    test = 'flutter';
+                    _color = Colors.amber;
+                  });
+                } else {
+                  setState(() {
+                    test = 'flutter';
+                    _color = Colors.blue;
+                  });
+                }
+              }
+          )
+      ),
+    )
+    );
+
   }
 }
